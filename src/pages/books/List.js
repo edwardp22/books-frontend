@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Button } from "@mui/material";
 import MaterialTable from "@material-table/core";
@@ -10,9 +11,10 @@ import { booksGet, booksDelete } from "../../state";
 import classes from "../../styles/booksList.module.css";
 import Dialog from "../../components/dialog/Dialog";
 
-export default function List({ onClickNew, onClickBook }) {
+export default function List() {
   const dispatch = useDispatch();
   const { books, isLoading } = useSelector((state) => state.books);
+  const navigate = useNavigate();
   const [deletingBook, setDeletingBook] = useState(undefined);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export default function List({ onClickNew, onClickBook }) {
       />
 
       <Grid container item xs={1} className={classes.buttons}>
-        <Button variant="contained" fullWidth onClick={() => onClickNew()}>
+        <Button variant="contained" fullWidth onClick={() => navigate("/0")}>
           New Book
         </Button>
       </Grid>
@@ -72,7 +74,7 @@ export default function List({ onClickNew, onClickBook }) {
             {
               icon: () => <Edit />,
               tooltip: "Edit Book",
-              onClick: (event, rowData) => onClickBook(rowData),
+              onClick: (event, rowData) => navigate(`/${rowData.id}`),
             },
           ]}
         />

@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, Button, TextField } from "@mui/material";
 
 import { booksPost, booksPut } from "../../state";
 
 import classes from "../../styles/booksEditor.module.css";
 
-export default function Editor({ bookDisplay, onSave }) {
+export default function Editor() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const params = useParams();
+  const { books } = useSelector((state) => state.books);
   const [book, setBook] = useState({ name: "", author: "" });
 
   useEffect(() => {
-    setBook(bookDisplay);
-  }, [bookDisplay]);
+    setBook(books.find((book) => +book.id === +params.bookId));
+  }, [books, params]);
 
   const saveBook = () => {
     if (!book || !book.name) return;
@@ -21,7 +25,7 @@ export default function Editor({ bookDisplay, onSave }) {
     if (book?.id) dispatch(booksPut(book.id, book));
     else dispatch(booksPost(book));
 
-    onSave();
+    navigate("/");
   };
 
   return (
@@ -88,7 +92,7 @@ export default function Editor({ bookDisplay, onSave }) {
             variant="contained"
             className={classes.buttonCancel}
             fullWidth
-            onClick={() => onSave()}
+            onClick={() => navigate("/")}
           >
             Cancel
           </Button>
