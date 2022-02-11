@@ -32,7 +32,7 @@ export default function ErrorFallback({ error, resetErrorBoundary }) {
 
           <Grid item xs={12}>
             <Typography variant="h4" color="primary" gutterBottom>
-              We received the error and we are working on it.
+              We have received the error and we are working on it.
             </Typography>
           </Grid>
 
