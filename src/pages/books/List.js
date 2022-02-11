@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Button } from "@material-ui/core";
 import MaterialTable from "@material-table/core";
-import { Delete } from "@material-ui/icons";
+import { Delete, Edit } from "@material-ui/icons";
 
 import { booksGet, booksDelete } from "../../state";
 
@@ -23,12 +23,17 @@ export default function List({ onClickNew, onClickBook }) {
 
   return (
     <Grid container direction="column" className={classes.container}>
+      <Grid container item xs={1} className={classes.buttons}>
+        <Button variant="contained" fullWidth onClick={() => onClickNew()}>
+          New Book
+        </Button>
+      </Grid>
+
       <Grid container item xs={11} className={classes.content}>
         <MaterialTable
           title="List of Books"
           options={{ paging: false, searchFieldStyle: { maxWidth: 200 } }}
           isLoading={isLoading}
-          onRowClick={(e, rowData) => onClickBook(rowData)}
           data={books}
           columns={[
             { title: "Name", field: "name", type: "string" },
@@ -50,14 +55,13 @@ export default function List({ onClickNew, onClickBook }) {
               tooltip: "Delete Book",
               onClick: (event, rowData) => deleteBook(rowData),
             },
+            {
+              icon: () => <Edit />,
+              tooltip: "Edit Book",
+              onClick: (event, rowData) => onClickBook(rowData),
+            },
           ]}
         />
-      </Grid>
-
-      <Grid container item xs={1} className={classes.buttons}>
-        <Button variant="contained" fullWidth onClick={() => onClickNew()}>
-          New Book
-        </Button>
       </Grid>
     </Grid>
   );
