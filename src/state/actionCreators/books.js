@@ -1,4 +1,4 @@
-import ActionTypes from "../actionTypes";
+import { ActionTypes } from "../actionTypes";
 import { toast } from "react-toastify";
 
 export const booksGet = () => (dispatch) => {
