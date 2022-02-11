@@ -1,0 +1,16 @@
+.container {
+  height: 100%;
+}
+
+.container > .content {
+  max-width: 100%;
+  min-width: 100%;
+  overflow: auto;
+  padding: 20px 5px;
+}
+
+.container > .buttons,
+.container > .buttons > button {
+  max-width: 100%;
+  background-color: aquamarine;
+}

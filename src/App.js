@@ -1,9 +1,25 @@
-import { Route, Routes } from "react-router-dom";
-
-import classes from "./styles/App.module.css";
+import { useState } from "react";
+import Editor from "./pages/books/Editor";
+import List from "./pages/books/List";
+import classes from "./styles/global.module.css";
 
 function App() {
-  return <div className={classes.App}></div>;
+  const [book, setBook] = useState();
+
+  const page = () => {
+    if (book) {
+      return <Editor bookDisplay={book} onSave={() => setBook(undefined)} />;
+    }
+
+    return (
+      <List
+        onClickNew={() => setBook({ id: 0 })}
+        onClickBook={(book) => setBook(book)}
+      />
+    );
+  };
+
+  return <div className={classes.App}>{page()}</div>;
 }
 
 export default App;

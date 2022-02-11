@@ -1,0 +1,18 @@
+.container {
+  height: 100%;
+}
+
+.container > .content,
+.container > .content > div:first-of-type {
+  max-width: 100%;
+  min-width: 100%;
+  overflow: auto;
+}
+
+.container > .buttons {
+  max-width: 100%;
+}
+
+.container > .buttons > button {
+  background-color: aqua;
+}

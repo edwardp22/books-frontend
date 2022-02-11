@@ -1,7 +1,6 @@
 import React from "react";
 
 import ReactDOM from "react-dom";
-import { BrowserRouter, useNavigate } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { ErrorBoundary } from "react-error-boundary";
@@ -17,18 +16,13 @@ ReactDOM.render(
   <React.StrictMode>
     <ErrorBoundary
       FallbackComponent={ErrorFallback}
-      onReset={() => {
-        const navigate = useNavigate();
-        navigate("/");
-      }}
+      onReset={() => window.location.reload(false)}
     >
       <CssBaseline />
       <ToastContainer />
 
       <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <App />
       </Provider>
     </ErrorBoundary>
   </React.StrictMode>,
