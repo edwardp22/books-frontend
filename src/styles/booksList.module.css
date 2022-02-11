@@ -15,4 +15,5 @@
 
 .container > .buttons > button {
   background-color: aqua;
+  font-weight: 600;
 }

@@ -9,8 +9,18 @@
   padding: 20px 5px;
 }
 
-.container > .buttons,
-.container > .buttons > button {
+.container > .buttons {
   max-width: 100%;
+}
+
+.container > .buttons > div > .buttonSave {
+  height: 100%;
   background-color: aquamarine;
+  font-weight: 600;
+}
+
+.container > .buttons > div > .buttonCancel {
+  height: 100%;
+  background-color: chocolate;
+  font-weight: 600;
 }
