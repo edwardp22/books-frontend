@@ -16,6 +16,8 @@ export default function Editor({ bookDisplay, onSave }) {
   }, [bookDisplay]);
 
   const saveBook = () => {
+    if (!book || !book.name) return;
+
     if (book?.id) dispatch(booksPut(book.id, book));
     else dispatch(booksPost(book));
 
@@ -25,7 +27,7 @@ export default function Editor({ bookDisplay, onSave }) {
   return (
     <Grid container direction="column" className={classes.container}>
       <Grid item xs={11} className={classes.content}>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
@@ -81,9 +83,27 @@ export default function Editor({ bookDisplay, onSave }) {
       </Grid>
 
       <Grid container item xs={1} className={classes.buttons}>
-        <Button variant="contained" fullWidth onClick={() => saveBook()}>
-          Save
-        </Button>
+        <Grid item xs={6}>
+          <Button
+            variant="contained"
+            className={classes.buttonCancel}
+            fullWidth
+            onClick={() => onSave()}
+          >
+            Cancel
+          </Button>
+        </Grid>
+
+        <Grid item xs={6}>
+          <Button
+            variant="contained"
+            className={classes.buttonSave}
+            fullWidth
+            onClick={() => saveBook()}
+          >
+            Save
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );
