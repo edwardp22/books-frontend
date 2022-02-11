@@ -3,8 +3,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Button } from "@material-ui/core";
 import MaterialTable from "@material-table/core";
+import { Delete } from "@material-ui/icons";
 
-import { booksGet } from "../../state";
+import { booksGet, booksDelete } from "../../state";
 
 import classes from "../../styles/booksList.module.css";
 
@@ -15,6 +16,10 @@ export default function List({ onClickNew, onClickBook }) {
   useEffect(() => {
     dispatch(booksGet());
   }, [dispatch]);
+
+  const deleteBook = (book) => {
+    dispatch(booksDelete(book?.id));
+  };
 
   return (
     <Grid container direction="column" className={classes.container}>
@@ -37,6 +42,13 @@ export default function List({ onClickNew, onClickBook }) {
               title: "ISBN",
               field: "ISBN",
               type: "numeric",
+            },
+          ]}
+          actions={[
+            {
+              icon: () => <Delete />,
+              tooltip: "Delete Book",
+              onClick: (event, rowData) => deleteBook(rowData),
             },
           ]}
         />
