@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Button } from "@material-ui/core";
+import { Grid, Button } from "@mui/material";
 import MaterialTable from "@material-table/core";
 import { Delete, Edit } from "@material-ui/icons";
 
 import { booksGet, booksDelete } from "../../state";
 
 import classes from "../../styles/booksList.module.css";
+import Dialog from "../../components/dialog/Dialog";
 
 export default function List({ onClickNew, onClickBook }) {
   const dispatch = useDispatch();
   const { books, isLoading } = useSelector((state) => state.books);
+  const [deletingBook, setDeletingBook] = useState(undefined);
 
   useEffect(() => {
     dispatch(booksGet());
@@ -19,10 +21,22 @@ export default function List({ onClickNew, onClickBook }) {
 
   const deleteBook = (book) => {
     dispatch(booksDelete(book?.id));
+    setDeletingBook(undefined);
   };
 
   return (
     <Grid container direction="column" className={classes.container}>
+      <Dialog
+        open={!!deletingBook}
+        title="Deleting a Book"
+        titleStyle="warning"
+        message={`Are you sure about deleting the book ${deletingBook?.name}`}
+        button1Text="Confirm Delete"
+        button1Click={() => deleteBook(deletingBook)}
+        button2Text="Cancel"
+        button2Click={() => setDeletingBook(undefined)}
+      />
+
       <Grid container item xs={1} className={classes.buttons}>
         <Button variant="contained" fullWidth onClick={() => onClickNew()}>
           New Book
@@ -53,7 +67,7 @@ export default function List({ onClickNew, onClickBook }) {
             {
               icon: () => <Delete />,
               tooltip: "Delete Book",
-              onClick: (event, rowData) => deleteBook(rowData),
+              onClick: (event, rowData) => setDeletingBook(rowData),
             },
             {
               icon: () => <Edit />,
