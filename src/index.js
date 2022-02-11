@@ -1,5 +1,6 @@
 import React from "react";
 
+import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -22,7 +23,9 @@ ReactDOM.render(
       <ToastContainer />
 
       <Provider store={store}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </Provider>
     </ErrorBoundary>
   </React.StrictMode>,
