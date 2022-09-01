@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/books-frontend/static/css/main.15d7f453.css",
-    "main.js": "/books-frontend/static/js/main.e71b492a.js",
+    "main.js": "/books-frontend/static/js/main.c74639c3.js",
     "static/media/error3.webp": "/books-frontend/static/media/error3.ebed445a58eb8b5de863.webp",
     "index.html": "/books-frontend/index.html"
   },
   "entrypoints": [
     "static/css/main.15d7f453.css",
-    "static/js/main.e71b492a.js"
+    "static/js/main.c74639c3.js"
   ]
 }
