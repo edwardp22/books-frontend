@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/edwardp22.github.io/books-frontend/static/css/main.15d7f453.css",
+    "main.js": "/edwardp22.github.io/books-frontend/static/js/main.f7f9dae0.js",
+    "static/media/error3.webp": "/edwardp22.github.io/books-frontend/static/media/error3.ebed445a58eb8b5de863.webp",
+    "index.html": "/edwardp22.github.io/books-frontend/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.15d7f453.css",
+    "static/js/main.f7f9dae0.js"
+  ]
+}
